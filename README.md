@@ -2,6 +2,7 @@ https://nolanhergert.github.io/LCDSim/index.html
 
 ## Done
   * Root-Mean-Square simulation that is fairly performant in Javascript
+  * Basic algorithm that drives two LCD segments, one is intended to be much darker than the other.
 
 ## Todo
   * Improve accuracy of model based on real LCD results
