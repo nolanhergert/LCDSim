@@ -29,7 +29,7 @@
     const minOpaqueVoltage = 2.1;
     const lcdOpacitySlope = (0-1)/(minOpaqueVoltage-maxTransparentVoltage);
     const lcdOpacityIntercept = -lcdOpacitySlope * minOpaqueVoltage;
-    // Real measurement on full lens LCD at 3.3v is... from fully discharged:
+    // Real measurement on full lens "shutter" FSTN LCD at 3.3v is... from fully discharged:
     //   * From fully discharged, 4ms before LC starts turning opaque
     //   * From fully discharged, ~14ms before LC is fully opaque
     //   * From just turning clear again while discharging, 1ms before starts turning opaque
@@ -112,6 +112,25 @@
           var rowVoltage = 0;
           var colVoltage = 0;
 
+          if ((phase % 2) == 0) {
+            if (col == 5) {
+              colVoltage = drivingVoltage;
+            }
+            if (row == 7) {
+              rowVoltage = drivingVoltage;
+            }
+          }
+
+          if ((phase % 2) == 1) {
+            if (col == 7) {
+              colVoltage = drivingVoltage;
+            }
+            if (row == 5) {
+              rowVoltage = drivingVoltage;
+            }
+          }
+/*
+/*
           if ((phase % 2) == 0 && phase < 8) {
             if (col == 5) {
               colVoltage = drivingVoltage;
@@ -132,7 +151,7 @@
               rowVoltage = drivingVoltage;
             }
           }
-
+*/
           updatePixelVoltage(row, col, rowVoltage, colVoltage);
         }
       }
